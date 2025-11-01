@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BibliotecaClases
 {
-    internal class Nodo
+    public class Nodo
     {
+        public Cuenta dato;
+        public Nodo sig=null;
     }
 }
