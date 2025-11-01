@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35919.96 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaVentas_PF_EstDat3387", "SistemaVentas_PF_EstDat3387\SistemaVentas_PF_EstDat3387.csproj", "{845D0317-00E9-49A2-A02D-C0C4FEAD354C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaClases", "BibliotecaClases\BibliotecaClases.csproj", "{D0501BD4-E473-4431-9B4B-FCCA47B6CC56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{845D0317-00E9-49A2-A02D-C0C4FEAD354C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{845D0317-00E9-49A2-A02D-C0C4FEAD354C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{845D0317-00E9-49A2-A02D-C0C4FEAD354C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0501BD4-E473-4431-9B4B-FCCA47B6CC56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0501BD4-E473-4431-9B4B-FCCA47B6CC56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0501BD4-E473-4431-9B4B-FCCA47B6CC56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0501BD4-E473-4431-9B4B-FCCA47B6CC56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
