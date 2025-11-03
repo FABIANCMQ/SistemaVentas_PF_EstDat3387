@@ -11,4 +11,9 @@ namespace BibliotecaClases
         public Cuenta dato;
         public Nodo sig=null;
     }
+    public class NodoCola
+    {
+        public Clientes datos;
+        public NodoCola sig = null;
+    }
 }
