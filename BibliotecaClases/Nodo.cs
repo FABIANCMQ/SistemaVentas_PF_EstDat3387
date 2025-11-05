@@ -16,4 +16,10 @@ namespace BibliotecaClases
         public Clientes datos;
         public NodoCola sig = null;
     }
+    public class NodoArbol
+    {
+        public Clientes dato;
+        public NodoArbol izq = null;
+        public NodoArbol der = null;
+    }
 }
