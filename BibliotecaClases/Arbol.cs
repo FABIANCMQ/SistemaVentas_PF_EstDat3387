@@ -17,15 +17,15 @@ namespace BibliotecaClases
                 NodoArbol nuevo = new NodoArbol();
                 nuevo.dato = clientes;
                 raiz = nuevo;
-                Console.WriteLine($"Cliente con ID {clientes.ID} registrado correctamente.");
+                Console.WriteLine($"Cliente con DNI: {clientes.DNI} registrado correctamente.");
             }
             else
             {
-                if (clientes.ID < raiz.dato.ID)
+                if (clientes.DNI < raiz.dato.DNI)
                 {
                     insertar(ref raiz.izq, clientes);
                 }
-                else if (clientes.ID>raiz.dato.ID)
+                else if (clientes.DNI >raiz.dato.DNI)
                 {
                     insertar(ref raiz.der, clientes);
                 }
@@ -49,7 +49,7 @@ namespace BibliotecaClases
                 {
                     Console.WriteLine("\t");
                 }
-                Console.WriteLine($"ID: {raiz.dato.ID} - {raiz.dato.Nombre}");
+                Console.WriteLine($"ID: {raiz.dato.DNI} - {raiz.dato.Nombre}");
                 dibujar(raiz.izq, nivel + 1);
             }
         }
@@ -96,11 +96,11 @@ namespace BibliotecaClases
             }
             else
             {
-                if (id < raiz.dato.ID)
+                if (id < raiz.dato.DNI)
                 {
                     buscar(raiz.izq, id);
                 }
-                else if (id > raiz.dato.ID)
+                else if (id > raiz.dato.DNI)
                 {
                     buscar(raiz.der, id);
                 }
@@ -123,11 +123,11 @@ namespace BibliotecaClases
             }
             else
             {
-                if (id < raiz.dato.ID)
+                if (id < raiz.dato.DNI)
                 {
                     eliminar(ref raiz.izq, id);
                 }
-                else if (id>raiz.dato.ID)
+                else if (id>raiz.dato.DNI)
                 {
                     eliminar(ref raiz.izq, id);
                 }
