@@ -15,9 +15,10 @@ namespace BibliotecaClases
         public double Precio;
 
         public Cuenta() { }
-        public Cuenta(int codigo, string plataforma, string usuario, string contraseña, double precio)
+        public Cuenta(string plataforma, string usuario, string contraseña, double precio)
         {
-            Codigo = codigo;
+            Random r = new Random();
+            Codigo = r.Next(100, 501);
             Plataforma = plataforma;
             Usuario = usuario;
             Contraseña = contraseña;
