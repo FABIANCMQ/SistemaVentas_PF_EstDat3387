@@ -133,8 +133,9 @@ namespace BibliotecaClases
                 }
                 else
                 {
-                    if (raiz.izq==null&&raiz.der==null)
+                    if (raiz.izq == null && raiz.der == null)
                     {
+                        Console.WriteLine($"Cliente con DNI: {raiz.dato.DNI} eliminado correctamente");
                         raiz = null;
                     }
                     else
