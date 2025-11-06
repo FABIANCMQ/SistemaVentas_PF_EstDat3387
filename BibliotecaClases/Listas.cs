@@ -30,16 +30,6 @@ namespace BibliotecaClases
                 temp.sig = nuevo;
             }
         }
-        public void Mostrar()
-        {
-            Nodo temp = primero;
-            while (temp != null)
-            {
-                Console.WriteLine("--------------------");
-                Console.WriteLine(temp.dato.ToString());
-                temp = temp.sig;
-            }
-        }
         public void Buscar(int buscar)
         {
             Nodo temp = primero;
