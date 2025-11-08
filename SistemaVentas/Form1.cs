@@ -219,7 +219,7 @@ namespace SistemaVentas
 
             arClientes.Insertar(clienteAtendido);
 
-            string mensaje = $"Venta Realizada: \nCliente: {clienteAtendido.Nombre}\nPlataforma: {cuentaVendida.Plataforma}\nUsuario: {cuentaVendida.Usuario}\nPrecio: S/{cuentaVendida.Precio}";
+            string mensaje = $"Venta Realizada: \nCliente: {clienteAtendido.Nombre}\nPlataforma: {cuentaVendida.Plataforma}\nUsuario: {cuentaVendida.Usuario}\nContraseña: {cuentaVendida.Contraseña}\nPrecio: S/{cuentaVendida.Precio}";
             MessageBox.Show(mensaje);
 
             mostrarCuentas();
