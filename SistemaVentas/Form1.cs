@@ -24,6 +24,26 @@ namespace SistemaVentas
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+            //DataGriedView para las Plataformas
+            dgvPlataformas.Columns.Add("Codigo", "Código");
+            dgvPlataformas.Columns.Add("Plataforma", "Plataforma");
+            dgvPlataformas.Columns.Add("Precio", "Precio");
+
+            //DataGriedView para los Clientes
+            dgvClientes.Columns.Add("DNI", "DNI");
+            dgvClientes.Columns.Add("Nombre", "Nombre");
+            dgvClientes.Columns.Add("Telefono", "Teléfono");
+
+            dgvListaCuentas.Columns.Add("Codigo", "Código");
+            dgvListaCuentas.Columns.Add("Plataforma", "Plataforma");
+            dgvListaCuentas.Columns.Add("Usuario", "Usuario");
+            dgvListaCuentas.Columns.Add("Contraseña", "Contraseña");
+        }
+
+
         private void btRegistrarPlataforma_Click(object sender, EventArgs e)
         {
             if (txtUsuario.Text == "" || txtContrasena.Text == "" || txtPrecio.Text == "")
@@ -37,37 +57,83 @@ namespace SistemaVentas
             {
                 MessageBox.Show("Ingrese un precio valido.", "Error");
                 return;
-            }                                                      
+            }
 
-            Cuenta nuevaCuenta = new Cuenta(cbPlataformas.Text, txtUsuario.Text, txtContrasena.Text, double.Parse(txtPrecio.Text));
+            string plataforma = cbPlataformas.Text;
+
+            Cuenta nuevaCuenta = new Cuenta(plataforma, txtUsuario.Text, txtContrasena.Text, precio);
             lsInventario.Insertar(nuevaCuenta);
+
+            if (plataforma == "Netflix")
+                plNetflix.Apilar(nuevaCuenta);
+            else if (plataforma == "HBO")
+                plHBO.Apilar(nuevaCuenta);
+            else if (plataforma=="Disney")
+                plDisney.Apilar(nuevaCuenta);
+            else if (plataforma=="Prime Video")
+                plPrime.Apilar(nuevaCuenta);
+
+            MessageBox.Show("Cuenta Agregada", "Éxito");
+
             txtUsuario.Clear();
             txtContrasena.Clear();
             txtPrecio.Clear();
-            MessageBox.Show("Cuenta Agregada", "Éxito");
+
             mostrarCuentas();
         }
         public void mostrarCuentas()
         {
             dgvPlataformas.Rows.Clear();
+            if (plNetflix.cima != null)
+            {
+                Nodo temp = plNetflix.cima;
+                while (temp != null)
+                {
+                    dgvPlataformas.Rows.Add(temp.dato.Codigo, temp.dato.Plataforma, temp.dato.Precio);
+                    temp = temp.sig;
+                }
+
+            }
+            if (plHBO.cima != null)
+            {
+                Nodo temp = plHBO.cima;
+                while (temp != null)
+                {
+                    dgvPlataformas.Rows.Add(temp.dato.Codigo, temp.dato.Plataforma, temp.dato.Precio);
+                    temp = temp.sig;
+                }
+
+            }
+            if (plDisney.cima != null)
+            {
+                Nodo temp = plDisney.cima;
+                while (temp != null)
+                {
+                    dgvPlataformas.Rows.Add(temp.dato.Codigo, temp.dato.Plataforma, temp.dato.Precio);
+                    temp = temp.sig;
+                }
+
+            }
+            if (plPrime.cima != null)
+            {
+                Nodo temp = plPrime.cima;
+                while (temp != null)
+                {
+                    dgvPlataformas.Rows.Add(temp.dato.Codigo, temp.dato.Plataforma, temp.dato.Precio);
+                    temp = temp.sig;
+                }
+            }
+            
+        }
+        public void mostrarLista()
+        {
+            dgvListaCuentas.Rows.Clear();
             Nodo temp = lsInventario.primero;
             while (temp != null)
             {
-                dgvPlataformas.Rows.Add(temp.dato.Plataforma, temp.dato.Usuario, temp.dato.Contraseña, temp.dato.Precio);
+                dgvListaCuentas.Rows.Add(temp.dato.Codigo, temp.dato.Plataforma, temp.dato.Usuario, temp.dato.Contraseña);
                 temp = temp.sig;
             }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            dgvPlataformas.Columns.Add("Plataform", "Plataforma");
-            dgvPlataformas.Columns.Add("User", "Usuario");
-            dgvPlataformas.Columns.Add("Password", "Contraseña");
-            dgvPlataformas.Columns.Add("Price", "Precio");
-
-            dgvClientes.Columns.Add("DNI","DNI");
-            dgvClientes.Columns.Add("Name","Nombre");
-            dgvClientes.Columns.Add("Phone","Teléfono");
         }
     }
 }
