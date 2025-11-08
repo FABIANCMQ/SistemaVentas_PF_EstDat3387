@@ -225,5 +225,44 @@ namespace SistemaVentas
             mostrarCuentas();
             mostrarClientes();
         }
+
+        private void btArbolClientes_Click(object sender, EventArgs e)
+        {
+            tvClientes.Nodes.Clear();
+
+            if (arClientes.raiz_principal == null)
+            {
+                MessageBox.Show("No hay clientes registrados", "Aviso");
+                return;
+            }
+
+            TreeNode raiz = new TreeNode("CLIENTES");
+            tvClientes.Nodes.Add(raiz);
+
+            mostrarTreeView(arClientes.raiz_principal, raiz);
+        }
+        public void mostrarTreeView(NodoArbol arbol, TreeNode nodoVisual)
+        {
+            if (arbol != null)
+            {
+                string texto = $"DNI: {arbol.dato.DNI} - {arbol.dato.Nombre}";
+                TreeNode nodoNuevo = new TreeNode(texto);
+                nodoVisual.Nodes.Add(nodoNuevo);
+
+                if (arbol.izq != null)
+                {
+                    TreeNode nodoIzq = new TreeNode("IZQ");
+                    nodoNuevo.Nodes.Add(nodoIzq);
+                    mostrarTreeView(arbol.izq, nodoIzq);
+                }
+
+                if (arbol.der != null)
+                {
+                    TreeNode nodoDer = new TreeNode("DER");
+                    nodoNuevo.Nodes.Add(nodoDer);
+                    mostrarTreeView(arbol.der, nodoDer);
+                }
+            }
+        }
     }
 }
