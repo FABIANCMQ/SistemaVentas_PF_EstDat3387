@@ -15,10 +15,15 @@ namespace SistemaVentas
     public partial class Form1 : Form
     {
         public Listas lsInventario = new Listas();
+
         public Pilas plNetflix = new Pilas();
         public Pilas plHBO = new Pilas();
         public Pilas plDisney = new Pilas();
         public Pilas plPrime = new Pilas();
+
+        public Colas clClientes = new Colas();
+
+        public Arbol arClientes=new Arbol();
         public Form1()
         {
             InitializeComponent();
@@ -80,6 +85,7 @@ namespace SistemaVentas
             txtPrecio.Clear();
 
             mostrarCuentas();
+            mostrarLista();
         }
         public void mostrarCuentas()
         {
@@ -134,6 +140,90 @@ namespace SistemaVentas
                 dgvListaCuentas.Rows.Add(temp.dato.Codigo, temp.dato.Plataforma, temp.dato.Usuario, temp.dato.Contraseña);
                 temp = temp.sig;
             }
+        }
+
+        private void btRegistrarCliente_Click(object sender, EventArgs e)
+        {
+            if (txtDNI.Text == "" || txtNombre.Text == "" || txtTelefono.Text == "")
+            {
+                MessageBox.Show("Ingrese todos los datos.", "Aviso");
+                return;
+            }
+
+            int dni=0;
+            if (!int.TryParse(txtDNI.Text, out dni))
+            {
+                MessageBox.Show("El DNI debe ser valido.", "Error");
+                return;
+            }
+            if (txtDNI.Text.Length != 8)
+            {
+                MessageBox.Show("El DNI debe tener 8 dígitos","Error");
+                return;
+            }
+
+            Clientes clienteNuevo = new Clientes(dni,txtTelefono.Text,txtNombre.Text,0);
+            clClientes.Encolar(clienteNuevo);
+            MessageBox.Show("Cliente agendado en la Cola", "Éxito");
+
+            txtDNI.Clear();
+            txtNombre.Clear();
+            txtTelefono.Clear();
+
+            mostrarClientes();
+        }
+
+        public void mostrarClientes()
+        {
+            dgvClientes.Rows.Clear();
+            NodoCola temp = clClientes.frente;
+            while(temp != null)
+            {
+                dgvClientes.Rows.Add(temp.datos.DNI,temp.datos.Nombre,temp.datos.Telefono);
+                temp = temp.sig;
+            }
+            
+        }
+        private void btVenta_Click(object sender, EventArgs e)
+        {
+            if (clClientes.frente == null)
+            {
+                MessageBox.Show("No hay clientes en espera");
+                return;
+            }
+
+            Clientes clienteAtendido = clClientes.Desencolar();
+
+            string plataforma = cbPlataformas.Text;
+
+            Pilas plSeleccionada = null;
+            if (plataforma == "Netflix")
+                plSeleccionada = plNetflix;
+            else if (plataforma == "HBO")
+                plSeleccionada = plHBO;
+            else if (plataforma == "Disney")
+                plSeleccionada = plDisney;
+            else if (plataforma == "Prime Video")
+                plSeleccionada = plPrime;
+
+            Cuenta cuentaVendida = plSeleccionada.Desapilar();
+
+            if (cuentaVendida == null)
+            {
+                MessageBox.Show($"No hay cuentas de {plataforma} disponibles");
+                clClientes.Encolar(clienteAtendido);
+                return;
+            }
+
+            clienteAtendido.Gasto += cuentaVendida.Precio;
+
+            arClientes.Insertar(clienteAtendido);
+
+            string mensaje = $"Venta Realizada: \nCliente: {clienteAtendido.Nombre}\nPlataforma: {cuentaVendida.Plataforma}\nUsuario: {cuentaVendida.Usuario}\nPrecio: S/{cuentaVendida.Precio}";
+            MessageBox.Show(mensaje);
+
+            mostrarCuentas();
+            mostrarClientes();
         }
     }
 }
