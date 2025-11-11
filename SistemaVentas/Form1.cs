@@ -20,10 +20,17 @@ namespace SistemaVentas
         public Pilas plHBO = new Pilas();
         public Pilas plDisney = new Pilas();
         public Pilas plPrime = new Pilas();
+        public Pilas plCanva = new Pilas();
+        public Pilas plCrunchy = new Pilas();
 
         public Colas clClientes = new Colas();
 
-        public Arbol arClientes=new Arbol();
+        public Arbol arNetflix = new Arbol();
+        public Arbol arHBO = new Arbol();
+        public Arbol arDisney = new Arbol();
+        public Arbol arPrime = new Arbol();
+        public Arbol arCanva = new Arbol();
+        public Arbol arCrunchy = new Arbol();
         public Form1()
         {
             InitializeComponent();
@@ -77,7 +84,10 @@ namespace SistemaVentas
                 plDisney.Apilar(nuevaCuenta);
             else if (plataforma=="Prime Video")
                 plPrime.Apilar(nuevaCuenta);
-
+            else if (plataforma == "Canva")
+                plCanva.Apilar(nuevaCuenta);
+            else if (plataforma == "Crunchyroll")
+                plCrunchy.Apilar(nuevaCuenta);
             MessageBox.Show("Cuenta Agregada", "Éxito");
 
             txtUsuario.Clear();
@@ -123,6 +133,24 @@ namespace SistemaVentas
             if (plPrime.cima != null)
             {
                 Nodo temp = plPrime.cima;
+                while (temp != null)
+                {
+                    dgvPlataformas.Rows.Add(temp.dato.Codigo, temp.dato.Plataforma, temp.dato.Precio);
+                    temp = temp.sig;
+                }
+            }
+            if (plCanva.cima != null)
+            {
+                Nodo temp = plCanva.cima;
+                while (temp != null)
+                {
+                    dgvPlataformas.Rows.Add(temp.dato.Codigo, temp.dato.Plataforma, temp.dato.Precio);
+                    temp = temp.sig;
+                }
+            }
+            if (plCrunchy.cima != null)
+            {
+                Nodo temp = plCrunchy.cima;
                 while (temp != null)
                 {
                     dgvPlataformas.Rows.Add(temp.dato.Codigo, temp.dato.Plataforma, temp.dato.Precio);
@@ -191,78 +219,212 @@ namespace SistemaVentas
                 MessageBox.Show("No hay clientes en espera");
                 return;
             }
-
-            Clientes clienteAtendido = clClientes.Desencolar();
-
-            string plataforma = cbPlataformas.Text;
-
-            Pilas plSeleccionada = null;
-            if (plataforma == "Netflix")
-                plSeleccionada = plNetflix;
-            else if (plataforma == "HBO")
-                plSeleccionada = plHBO;
-            else if (plataforma == "Disney")
-                plSeleccionada = plDisney;
-            else if (plataforma == "Prime Video")
-                plSeleccionada = plPrime;
-
-            Cuenta cuentaVendida = plSeleccionada.Desapilar();
-
-            if (cuentaVendida == null)
+            if (clbVentaPlataformas.CheckedItems.Count == 0)
             {
-                MessageBox.Show($"No hay cuentas de {plataforma} disponibles");
-                clClientes.Encolar(clienteAtendido);
+                MessageBox.Show("Debe Seleccionar al menos una opción", "Error");
                 return;
             }
 
-            clienteAtendido.Gasto += cuentaVendida.Precio;
+            Clientes clienteAtendido = clClientes.Desencolar();
 
-            arClientes.Insertar(clienteAtendido);
+            string detalleVenta = "";
+            double totalVenta = 0;
+            int cuentasVendidas = 0;
+            string plataformasCompradas = "";
 
-            string mensaje = $"Venta Realizada: \nCliente: {clienteAtendido.Nombre}\nPlataforma: {cuentaVendida.Plataforma}\nUsuario: {cuentaVendida.Usuario}\nContraseña: {cuentaVendida.Contraseña}\nPrecio: S/{cuentaVendida.Precio}";
-            MessageBox.Show(mensaje);
+            for (int i = 0; i < clbVentaPlataformas.CheckedItems.Count; i++)
+            {
+                string plataforma = clbVentaPlataformas.CheckedItems[i].ToString();
 
-            mostrarCuentas();
+                
+
+                Pilas plSeleccionada = null;
+                Arbol arSeleccionado = null;
+
+                if (plataforma == "Netflix")
+                {
+                    plSeleccionada = plNetflix;
+                    arSeleccionado = arNetflix;
+                }
+                    
+                else if (plataforma == "HBO")
+                {
+                    plSeleccionada = plHBO;
+                    arSeleccionado= arHBO;
+                }
+                    
+                else if (plataforma == "Disney")
+                {
+                    plSeleccionada = plDisney;
+                    arSeleccionado = arDisney;
+                }
+                    
+                else if (plataforma == "Prime Video")
+                {
+                    plSeleccionada = plPrime;
+                    arSeleccionado = arPrime;
+                }
+                    
+                else if (plataforma == "Canva")
+                {
+                    plSeleccionada = plCanva;
+                    arSeleccionado = arCanva;
+                }
+                    
+                else if (plataforma == "Prime Video")
+                {
+                    plSeleccionada = plCrunchy;
+                    arSeleccionado = arCrunchy;
+                }
+                    
+
+
+                Cuenta cuentaVendida = plSeleccionada.Desapilar();
+
+                if (cuentaVendida == null)
+                {
+                    detalleVenta = $"{detalleVenta} + X + {plataforma} + : Sin Stock\n\n"
+                }
+                else
+                {
+                    clienteAtendido.Gasto += cuentaVendida.Precio;
+                    totalVenta += cuentaVendida.Precio;
+                    cuentasVendidas += 1;
+
+                    detalleVenta = $"{plataforma} : \n Usuario: {cuentaVendida.Usuario}\n Contraseña: {cuentaVendida.Contraseña}\n Precio: S/{cuentaVendida.Precio}\n\n";
+
+                    if (plataformasCompradas == "")
+                    {
+                        plataformasCompradas = plataforma;
+                    }
+                    else
+                    {
+                        plataformasCompradas += $", {plataforma}";
+                    }
+                    Clientes clienteCopia=new Clientes(clienteAtendido.DNI,clienteAtendido.Telefono,clienteAtendido.Nombre,0);
+                    clienteCopia.Plataforma= plataforma;
+                    clienteAtendido.Gasto = cuentaVendida.Precio;
+                    arSeleccionado.Insertar(clienteCopia);
+                }
+            }
+
+            if (cuentasVendidas == 0)
+            {
+                MessageBox.Show("No se pudo realizar la venta. Sin Stock", "Error");
+                clClientes.Encolar(clienteAtendido);
+                for (int i = 0; i < clbVentaPlataformas.Items.Count; i++)
+                {
+                    clbVentaPlataformas.SetItemChecked(i, false);
+                }
+                return;
+            }
+
+            string resumen = $"VENTA REALIZADA\n\nCliente: {clienteAtendido.Nombre}\nDNI: {clienteAtendido.DNI}\nPlataformas: {clienteAtendido.Plataforma}\nDetalles de Venta: {detalleVenta}\n--------------------------\nTotal Venta: {totalVenta}\nTotal Acumulado: {clienteAtendido.Gasto}";
+            MessageBox.Show(resumen,"Venta Exitosa");
+
+            for(int i = 0; i < clbVentaPlataformas.Items.Count; i++)
+            {
+                clbVentaPlataformas.SetItemChecked(i, false);
+            }
             mostrarClientes();
+            mostrarCuentas();
         }
 
         private void btArbolClientes_Click(object sender, EventArgs e)
         {
+
             tvClientes.Nodes.Clear();
 
-            if (arClientes.raiz_principal == null)
+            TreeNode raizPrincipal = new TreeNode("CLIENTES");
+            tvClientes.Nodes.Add(raizPrincipal);
+
+            TreeNode ndNetflix = new TreeNode("NETFLIX");
+            raizPrincipal.Nodes.Add(ndNetflix);
+            if (arNetflix.raiz_principal != null)
             {
-                MessageBox.Show("No hay clientes registrados", "Aviso");
-                return;
+                LlenarArbolPlataforma(arNetflix.raiz_principal, ndNetflix);
+            }
+            else
+            {
+                ndNetflix.Nodes.Add(new TreeNode("Sin clientes"));
+            }
+            TreeNode ndHBO = new TreeNode("HBO");
+            raizPrincipal.Nodes.Add(ndHBO);
+            if (arHBO.raiz_principal != null)
+            {
+                LlenarArbolPlataforma(arHBO.raiz_principal, ndHBO);
+            }
+            else
+            {
+                ndHBO.Nodes.Add(new TreeNode("Sin clientes"));
+            }
+            TreeNode ndDisney = new TreeNode("Disney");
+            raizPrincipal.Nodes.Add(ndDisney);
+            if (arDisney.raiz_principal != null)
+            {
+                LlenarArbolPlataforma(arDisney.raiz_principal, ndDisney);
+            }
+            else
+            {
+                ndDisney.Nodes.Add(new TreeNode("Sin clientes"));
+            }
+            TreeNode ndPrime = new TreeNode("Prime Video");
+            raizPrincipal.Nodes.Add(ndPrime);
+            if (arPrime.raiz_principal != null)
+            {
+                LlenarArbolPlataforma(arPrime.raiz_principal, ndPrime);
+            }
+            else
+            {
+                ndPrime.Nodes.Add(new TreeNode("Sin clientes"));
+            }
+            TreeNode ndCanva = new TreeNode("Canva");
+            raizPrincipal.Nodes.Add(ndCanva);
+            if (arCanva.raiz_principal != null)
+            {
+                LlenarArbolPlataforma(arCanva.raiz_principal, ndCanva);
+            }
+            else
+            {
+                ndCanva.Nodes.Add(new TreeNode("Sin clientes"));
+            }
+            TreeNode ndCrunchy = new TreeNode("Crunchyroll");
+            raizPrincipal.Nodes.Add(ndCrunchy);
+            if (arCrunchy.raiz_principal != null)
+            {
+                LlenarArbolPlataforma(arCrunchy.raiz_principal, ndCrunchy);
+            }
+            else
+            {
+                ndCrunchy.Nodes.Add(new TreeNode("Sin clientes"));
             }
 
-            TreeNode raiz = new TreeNode("CLIENTES");
-            tvClientes.Nodes.Add(raiz);
 
-            mostrarTreeView(arClientes.raiz_principal, raiz);
+            tvClientes.ExpandAll();
         }
-        public void mostrarTreeView(NodoArbol arbol, TreeNode nodoVisual)
+        
+
+        public void LlenarArbolPlataforma(NodoArbol nodo,TreeNode nodoVisual)
         {
-            if (arbol != null)
+            if(nodo != null)
             {
-                string texto = $"DNI: {arbol.dato.DNI} - {arbol.dato.Nombre}";
-                TreeNode nodoNuevo = new TreeNode(texto);
-                nodoVisual.Nodes.Add(nodoNuevo);
+                TreeNode nuevoNodo = new TreeNode($"DNI: {nodo.dato.DNI} | {nodo.dato.Nombre} | {nodo.dato.Gasto}");
+                nodoVisual.Nodes.Add(nuevoNodo);
 
-                if (arbol.izq != null)
+                if (nodo.izq != null)
                 {
-                    TreeNode nodoIzq = new TreeNode("IZQ");
-                    nodoNuevo.Nodes.Add(nodoIzq);
-                    mostrarTreeView(arbol.izq, nodoIzq);
+                    LlenarArbolPlataforma(nodo.izq, nuevoNodo);
                 }
-
-                if (arbol.der != null)
+                if (nodo.der != null)
                 {
-                    TreeNode nodoDer = new TreeNode("DER");
-                    nodoNuevo.Nodes.Add(nodoDer);
-                    mostrarTreeView(arbol.der, nodoDer);
+                    LlenarArbolPlataforma(nodo.der, nuevoNodo);
                 }
             }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -12,6 +12,7 @@ namespace BibliotecaClases
         public string Telefono;
         public string Nombre;
         public double Gasto;
+        public string Plataforma;
 
         public Clientes() { }
 
@@ -21,11 +22,12 @@ namespace BibliotecaClases
             Telefono = telefono;
             Nombre = nombre;
             Gasto = 0;
+            Plataforma = "";
         }
 
         public override string ToString()
         {
-            return $"DNI: {DNI}\n|Nombre: {Nombre}\n|Teléfono: {Telefono} \n|Total Gastado: {Gasto}";
+            return $"DNI: {DNI}\n|Nombre: {Nombre}\n|Teléfono: {Telefono} \n|Plataforma: {Plataforma}\n|Total Gastado: {Gasto}";
         }
     }
 }

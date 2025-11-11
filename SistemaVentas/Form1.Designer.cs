@@ -42,6 +42,8 @@
             this.cbPlataformas = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.clbVentaPlataformas = new System.Windows.Forms.CheckedListBox();
             this.btVenta = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
@@ -74,7 +76,7 @@
             // 
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dgvPlataformas);
-            this.groupBox1.Location = new System.Drawing.Point(13, 14);
+            this.groupBox1.Location = new System.Drawing.Point(6, 184);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -114,7 +116,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.cbPlataformas);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(520, 14);
+            this.groupBox2.Location = new System.Drawing.Point(513, 184);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -192,7 +194,9 @@
             "Netflix",
             "HBO",
             "Disney",
-            "Prime Video"});
+            "Prime Video",
+            "Canva",
+            "Crunchyroll"});
             this.cbPlataformas.Location = new System.Drawing.Point(92, 33);
             this.cbPlataformas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbPlataformas.Name = "cbPlataformas";
@@ -210,26 +214,53 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.clbVentaPlataformas);
             this.groupBox3.Controls.Add(this.btVenta);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.dgvClientes);
-            this.groupBox3.Location = new System.Drawing.Point(301, 298);
+            this.groupBox3.Location = new System.Drawing.Point(325, 455);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(491, 267);
+            this.groupBox3.Size = new System.Drawing.Size(727, 267);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Cola de Clientes";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(499, 64);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(143, 16);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "Seleccione Plataforma";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
+            // clbVentaPlataformas
+            // 
+            this.clbVentaPlataformas.FormattingEnabled = true;
+            this.clbVentaPlataformas.Items.AddRange(new object[] {
+            "Netflix",
+            "HBO",
+            "Disney",
+            "Prime Video",
+            "Canva",
+            "Crunchyroll"});
+            this.clbVentaPlataformas.Location = new System.Drawing.Point(502, 93);
+            this.clbVentaPlataformas.Name = "clbVentaPlataformas";
+            this.clbVentaPlataformas.Size = new System.Drawing.Size(107, 106);
+            this.clbVentaPlataformas.TabIndex = 10;
+            // 
             // btVenta
             // 
-            this.btVenta.Location = new System.Drawing.Point(347, 218);
+            this.btVenta.Location = new System.Drawing.Point(615, 126);
             this.btVenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btVenta.Name = "btVenta";
-            this.btVenta.Size = new System.Drawing.Size(135, 28);
+            this.btVenta.Size = new System.Drawing.Size(90, 28);
             this.btVenta.TabIndex = 9;
-            this.btVenta.Text = "Realizar Venta";
+            this.btVenta.Text = "Vender";
             this.btVenta.UseVisualStyleBackColor = true;
             this.btVenta.Click += new System.EventHandler(this.btVenta_Click);
             // 
@@ -250,7 +281,7 @@
             this.dgvClientes.Name = "dgvClientes";
             this.dgvClientes.RowHeadersWidth = 51;
             this.dgvClientes.RowTemplate.Height = 24;
-            this.dgvClientes.Size = new System.Drawing.Size(471, 150);
+            this.dgvClientes.Size = new System.Drawing.Size(471, 186);
             this.dgvClientes.TabIndex = 0;
             // 
             // groupBox4
@@ -262,7 +293,7 @@
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.txtDNI);
             this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Location = new System.Drawing.Point(13, 298);
+            this.groupBox4.Location = new System.Drawing.Point(48, 455);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -337,11 +368,11 @@
             // 
             this.groupBox5.Controls.Add(this.label10);
             this.groupBox5.Controls.Add(this.dgvListaCuentas);
-            this.groupBox5.Location = new System.Drawing.Point(814, 20);
+            this.groupBox5.Location = new System.Drawing.Point(807, 190);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox5.Size = new System.Drawing.Size(519, 261);
+            this.groupBox5.Size = new System.Drawing.Size(583, 261);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Historial de Cuentas - Lista";
@@ -363,18 +394,18 @@
             this.dgvListaCuentas.Name = "dgvListaCuentas";
             this.dgvListaCuentas.RowHeadersWidth = 51;
             this.dgvListaCuentas.RowTemplate.Height = 24;
-            this.dgvListaCuentas.Size = new System.Drawing.Size(496, 159);
+            this.dgvListaCuentas.Size = new System.Drawing.Size(566, 159);
             this.dgvListaCuentas.TabIndex = 0;
             // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.btArbolClientes);
             this.groupBox6.Controls.Add(this.tvClientes);
-            this.groupBox6.Location = new System.Drawing.Point(814, 298);
+            this.groupBox6.Location = new System.Drawing.Point(1058, 455);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox6.Size = new System.Drawing.Size(287, 267);
+            this.groupBox6.Size = new System.Drawing.Size(310, 267);
             this.groupBox6.TabIndex = 3;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Árbol de Clientes";
@@ -401,7 +432,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1408, 579);
+            this.ClientSize = new System.Drawing.Size(1408, 733);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -463,6 +494,8 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TreeView tvClientes;
         private System.Windows.Forms.Button btArbolClientes;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.CheckedListBox clbVentaPlataformas;
     }
 }
 
