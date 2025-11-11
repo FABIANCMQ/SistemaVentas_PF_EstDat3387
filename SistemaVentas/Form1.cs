@@ -272,7 +272,7 @@ namespace SistemaVentas
                     arSeleccionado = arCanva;
                 }
                     
-                else if (plataforma == "Prime Video")
+                else if (plataforma == "Crunchyroll")
                 {
                     plSeleccionada = plCrunchy;
                     arSeleccionado = arCrunchy;

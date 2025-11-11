@@ -40,22 +40,5 @@ namespace BibliotecaClases
                 return null;
             }
         }
-        public void Mostrar()
-        {
-            if (frente != null)
-            {
-                NodoCola temp = frente;
-                Console.WriteLine("---Clientes en Espera---");
-                while (temp != null)
-                {
-                    Console.WriteLine(temp.datos.ToString());
-                    temp = temp.sig;
-                }
-            }
-            else
-            {
-                Console.WriteLine("La Cola está vacía. Sin clientes en espera");
-            }
-        }
     }
 }

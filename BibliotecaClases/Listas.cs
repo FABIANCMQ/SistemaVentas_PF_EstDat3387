@@ -31,52 +31,6 @@ namespace BibliotecaClases
             }
         }
 
-        public void Mostrar()
-        {
-            Nodo temp = primero;
-            while (temp != null)
-            {
-                Console.WriteLine("--------------------");
-                Console.WriteLine(temp.dato.ToString());
-                temp = temp.sig;
-            }
-        }
-        public void Buscar(int buscar)
-        {
-            Nodo temp = primero;
-            while (temp != null)
-            {
-                if (temp.dato.Codigo == buscar)
-                {
-                    Console.WriteLine("Dato encontrado");
-                    Console.WriteLine(temp.dato.ToString());
-                    return;
-                }
-                temp = temp.sig;
-            }
-        }
-        public void Eliminar(int borrar)
-        {
-            Nodo temp = primero;
-            Nodo ant = null;
-            while (temp != null)
-            {
-                if (temp.dato.Codigo == borrar)
-                {
-                    if (temp == primero)
-                    {
-                        primero = primero.sig;
-                    }
-                    else
-                    {
-                        ant.sig = temp.sig;
-                    }
-                    return;
-                }
-                ant = temp;
-                temp = temp.sig;
-            }
-            Console.WriteLine("Dato no encontrado");
-        }
+        
     }
 }

@@ -32,22 +32,5 @@ namespace BibliotecaClases
                 return null;
             }
         }
-        public void Mostrar()
-        {
-            if (cima != null)
-            {
-                Nodo temp = cima;
-                Console.WriteLine("---Cuentas Disponibles---");
-                while (temp != null)
-                {
-                    Console.WriteLine(temp.dato.ToString());
-                    temp = temp.sig;
-                }
-            }
-            else
-            {
-                Console.WriteLine("No hay cuentas disponibles---");
-            }
-        }
     }
 }
