@@ -283,15 +283,18 @@ namespace SistemaVentas
 
                 if (cuentaVendida == null)
                 {
-                    detalleVenta = $"{detalleVenta} + X + {plataforma} + : Sin Stock\n\n"
+                    detalleVenta = $"{detalleVenta} + X + {plataforma} + : Sin Stock\n\n";
                 }
                 else
                 {
-                    clienteAtendido.Gasto += cuentaVendida.Precio;
-                    totalVenta += cuentaVendida.Precio;
-                    cuentasVendidas += 1;
+                    clienteAtendido.Gasto = clienteAtendido.Gasto + cuentaVendida.Precio;
+                    totalVenta = totalVenta + cuentaVendida.Precio;
+                    cuentasVendidas = cuentasVendidas + 1;
 
-                    detalleVenta = $"{plataforma} : \n Usuario: {cuentaVendida.Usuario}\n Contraseña: {cuentaVendida.Contraseña}\n Precio: S/{cuentaVendida.Precio}\n\n";
+                    detalleVenta = detalleVenta + $"{plataforma} : \n ";
+                    detalleVenta = detalleVenta + $"Usuario: {cuentaVendida.Usuario}\n";
+                    detalleVenta = detalleVenta + $"Contraseña: {cuentaVendida.Contraseña}\n";
+                    detalleVenta = detalleVenta + $"Precio: S/ {cuentaVendida.Precio}\n\n";
 
                     if (plataformasCompradas == "")
                     {
@@ -301,9 +304,10 @@ namespace SistemaVentas
                     {
                         plataformasCompradas += $", {plataforma}";
                     }
-                    Clientes clienteCopia=new Clientes(clienteAtendido.DNI,clienteAtendido.Telefono,clienteAtendido.Nombre,0);
-                    clienteCopia.Plataforma= plataforma;
-                    clienteAtendido.Gasto = cuentaVendida.Precio;
+                    Clientes clienteCopia = new Clientes(clienteAtendido.DNI, clienteAtendido.Telefono, clienteAtendido.Nombre, 0);
+                    clienteCopia.Plataforma = plataforma;
+                    clienteCopia.Gasto = cuentaVendida.Precio;
+
                     arSeleccionado.Insertar(clienteCopia);
                 }
             }
@@ -319,7 +323,7 @@ namespace SistemaVentas
                 return;
             }
 
-            string resumen = $"VENTA REALIZADA\n\nCliente: {clienteAtendido.Nombre}\nDNI: {clienteAtendido.DNI}\nPlataformas: {clienteAtendido.Plataforma}\nDetalles de Venta: {detalleVenta}\n--------------------------\nTotal Venta: {totalVenta}\nTotal Acumulado: {clienteAtendido.Gasto}";
+            string resumen = $"VENTA REALIZADA\n\nCliente: {clienteAtendido.Nombre}\nDNI: {clienteAtendido.DNI}\nPlataformas: {plataformasCompradas}\nDetalles de Venta: \n{detalleVenta}\n--------------------------\nTotal Venta: {totalVenta}\nTotal Acumulado: {clienteAtendido.Gasto}";
             MessageBox.Show(resumen,"Venta Exitosa");
 
             for(int i = 0; i < clbVentaPlataformas.Items.Count; i++)
@@ -332,99 +336,120 @@ namespace SistemaVentas
 
         private void btArbolClientes_Click(object sender, EventArgs e)
         {
-
             tvClientes.Nodes.Clear();
 
-            TreeNode raizPrincipal = new TreeNode("CLIENTES");
+            TreeNode raizPrincipal = new TreeNode("CLIENTES REGISTRADOS");
             tvClientes.Nodes.Add(raizPrincipal);
 
             TreeNode ndNetflix = new TreeNode("NETFLIX");
             raizPrincipal.Nodes.Add(ndNetflix);
             if (arNetflix.raiz_principal != null)
             {
-                LlenarArbolPlataforma(arNetflix.raiz_principal, ndNetflix);
+                double totalNetflix = 0;
+                int clientesNetflix = 0;
+                LlenarArbolconGasto(arNetflix.raiz_principal, ndNetflix, ref totalNetflix, ref clientesNetflix);
+                ndNetflix.Text = "NETFLIX (" + clientesNetflix + " clientes | Total: S/ " + totalNetflix + ")";
             }
             else
             {
-                ndNetflix.Nodes.Add(new TreeNode("Sin clientes"));
+                ndNetflix.Nodes.Add(new TreeNode("(Sin clientes)"));
             }
+
             TreeNode ndHBO = new TreeNode("HBO");
             raizPrincipal.Nodes.Add(ndHBO);
             if (arHBO.raiz_principal != null)
             {
-                LlenarArbolPlataforma(arHBO.raiz_principal, ndHBO);
+                double totalHBO = 0;
+                int clientesHBO = 0;
+                LlenarArbolconGasto(arHBO.raiz_principal, ndHBO, ref totalHBO, ref clientesHBO);
+                ndHBO.Text = "HBO (" + clientesHBO + " clientes | Total: S/ " + totalHBO + ")";
             }
             else
             {
-                ndHBO.Nodes.Add(new TreeNode("Sin clientes"));
+                ndHBO.Nodes.Add(new TreeNode("(Sin clientes)"));
             }
+
             TreeNode ndDisney = new TreeNode("Disney");
             raizPrincipal.Nodes.Add(ndDisney);
             if (arDisney.raiz_principal != null)
             {
-                LlenarArbolPlataforma(arDisney.raiz_principal, ndDisney);
+                double totalDisney = 0;
+                int clientesDisney = 0;
+                LlenarArbolconGasto(arDisney.raiz_principal, ndDisney, ref totalDisney, ref clientesDisney);
+                ndDisney.Text = "Disney (" + clientesDisney + " clientes | Total: S/ " + totalDisney + ")";
             }
             else
             {
-                ndDisney.Nodes.Add(new TreeNode("Sin clientes"));
+                ndDisney.Nodes.Add(new TreeNode("(Sin clientes)"));
             }
+
             TreeNode ndPrime = new TreeNode("Prime Video");
             raizPrincipal.Nodes.Add(ndPrime);
             if (arPrime.raiz_principal != null)
             {
-                LlenarArbolPlataforma(arPrime.raiz_principal, ndPrime);
+                double totalPrime = 0;
+                int clientesPrime = 0;
+                LlenarArbolconGasto(arPrime.raiz_principal, ndPrime, ref totalPrime, ref clientesPrime);
+                ndPrime.Text = "Prime Video (" + clientesPrime + " clientes | Total: S/ " + totalPrime + ")";
             }
             else
             {
-                ndPrime.Nodes.Add(new TreeNode("Sin clientes"));
+                ndPrime.Nodes.Add(new TreeNode("(Sin clientes)"));
             }
+
             TreeNode ndCanva = new TreeNode("Canva");
             raizPrincipal.Nodes.Add(ndCanva);
             if (arCanva.raiz_principal != null)
             {
-                LlenarArbolPlataforma(arCanva.raiz_principal, ndCanva);
+                double totalCanva = 0;
+                int clientesCanva = 0;
+                LlenarArbolconGasto(arCanva.raiz_principal, ndCanva, ref totalCanva, ref clientesCanva);
+                ndCanva.Text = "Canva (" + clientesCanva + " clientes | Total: S/ " + totalCanva + ")";
             }
             else
             {
-                ndCanva.Nodes.Add(new TreeNode("Sin clientes"));
+                ndCanva.Nodes.Add(new TreeNode("(Sin clientes)"));
             }
+
             TreeNode ndCrunchy = new TreeNode("Crunchyroll");
             raizPrincipal.Nodes.Add(ndCrunchy);
             if (arCrunchy.raiz_principal != null)
             {
-                LlenarArbolPlataforma(arCrunchy.raiz_principal, ndCrunchy);
+                double totalCrunchy = 0;
+                int clientesCrunchy = 0;
+                LlenarArbolconGasto(arCrunchy.raiz_principal, ndCrunchy, ref totalCrunchy, ref clientesCrunchy);
+                ndCrunchy.Text = "Crunchyroll (" + clientesCrunchy + " clientes | Total: S/ " + totalCrunchy + ")";
             }
             else
             {
-                ndCrunchy.Nodes.Add(new TreeNode("Sin clientes"));
+                ndCrunchy.Nodes.Add(new TreeNode("(Sin clientes)"));
             }
-
-
             tvClientes.ExpandAll();
         }
         
 
-        public void LlenarArbolPlataforma(NodoArbol nodo,TreeNode nodoVisual)
+        public void LlenarArbolconGasto(NodoArbol nodo,TreeNode nodoVisual, ref double totalGasto, ref int contador)
         {
-            if(nodo != null)
+            if (nodo != null)
             {
-                TreeNode nuevoNodo = new TreeNode($"DNI: {nodo.dato.DNI} | {nodo.dato.Nombre} | {nodo.dato.Gasto}");
-                nodoVisual.Nodes.Add(nuevoNodo);
-
                 if (nodo.izq != null)
                 {
-                    LlenarArbolPlataforma(nodo.izq, nuevoNodo);
+                    LlenarArbolconGasto(nodo.izq, nodoVisual, ref totalGasto, ref contador);
                 }
+                string texto = $"DNI: { nodo.dato.DNI} | {nodo.dato.Nombre} | Gastó: S/ {nodo.dato.Gasto}";
+
+                TreeNode nuevoNodo = new TreeNode(texto);
+                nodoVisual.Nodes.Add(nuevoNodo);
+
+                totalGasto = totalGasto + nodo.dato.Gasto;
+                contador = contador + 1;
+
                 if (nodo.der != null)
                 {
-                    LlenarArbolPlataforma(nodo.der, nuevoNodo);
+                    LlenarArbolconGasto(nodo.der, nodoVisual, ref totalGasto, ref contador);
                 }
             }
         }
 
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -223,7 +223,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(727, 267);
+            this.groupBox3.Size = new System.Drawing.Size(674, 267);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Cola de Clientes";
@@ -236,7 +236,6 @@
             this.label11.Size = new System.Drawing.Size(143, 16);
             this.label11.TabIndex = 11;
             this.label11.Text = "Seleccione Plataforma";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // clbVentaPlataformas
             // 
@@ -250,12 +249,12 @@
             "Crunchyroll"});
             this.clbVentaPlataformas.Location = new System.Drawing.Point(502, 93);
             this.clbVentaPlataformas.Name = "clbVentaPlataformas";
-            this.clbVentaPlataformas.Size = new System.Drawing.Size(107, 106);
+            this.clbVentaPlataformas.Size = new System.Drawing.Size(140, 106);
             this.clbVentaPlataformas.TabIndex = 10;
             // 
             // btVenta
             // 
-            this.btVenta.Location = new System.Drawing.Point(615, 126);
+            this.btVenta.Location = new System.Drawing.Point(530, 204);
             this.btVenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btVenta.Name = "btVenta";
             this.btVenta.Size = new System.Drawing.Size(90, 28);
@@ -401,7 +400,7 @@
             // 
             this.groupBox6.Controls.Add(this.btArbolClientes);
             this.groupBox6.Controls.Add(this.tvClientes);
-            this.groupBox6.Location = new System.Drawing.Point(1058, 455);
+            this.groupBox6.Location = new System.Drawing.Point(1005, 455);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
