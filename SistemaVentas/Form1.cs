@@ -327,10 +327,11 @@ namespace SistemaVentas
             string resumen = $"VENTA REALIZADA\n\nCliente: {clienteAtendido.Nombre}\nDNI: {clienteAtendido.DNI}\nPlataformas: {plataformasCompradas}\nDetalles de Venta: \n{detalleVenta}\n--------------------------\nTotal Venta: {totalVenta}\nTotal Acumulado: {clienteAtendido.Gasto}";
             MessageBox.Show(resumen,"Venta Exitosa");
 
-            for(int i = 0; i < clbVentaPlataformas.Items.Count; i++)
+            for (int i = 0; i < clbVentaPlataformas.Items.Count; i++)
             {
                 clbVentaPlataformas.SetItemChecked(i, false);
             }
+
             mostrarClientes();
             mostrarCuentas();
         }
