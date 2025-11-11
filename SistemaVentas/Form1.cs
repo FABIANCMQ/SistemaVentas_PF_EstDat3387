@@ -38,6 +38,7 @@ namespace SistemaVentas
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Personalizacion();
 
             //DataGriedView para las Plataformas
             dgvPlataformas.Columns.Add("Codigo", "Código");
@@ -451,5 +452,145 @@ namespace SistemaVentas
             }
         }
 
+        private void Personalizacion()
+        {
+            this.BackColor = Color.FromArgb(15, 23, 42);  // Fondo azul oscuro
+            this.Text = "SISTEMA DE VENTAS - Cuentas Premium";
+
+            groupBox1.ForeColor = Color.FromArgb(34, 211, 238);
+            groupBox1.BackColor = Color.FromArgb(15, 23, 42);
+
+            groupBox2.ForeColor = Color.FromArgb(147, 197, 253);
+            groupBox2.BackColor = Color.FromArgb(15, 23, 42);
+
+            groupBox5.ForeColor = Color.FromArgb(196, 181, 253);
+            groupBox5.BackColor = Color.FromArgb(15, 23, 42);
+
+
+            groupBox4.ForeColor = Color.FromArgb(45, 212, 191);
+            groupBox4.BackColor = Color.FromArgb(15, 23, 42);
+
+            groupBox3.ForeColor = Color.FromArgb(96, 165, 250);
+            groupBox3.BackColor = Color.FromArgb(15, 23, 42);
+
+            groupBox6.ForeColor = Color.FromArgb(34, 211, 238);
+            groupBox6.BackColor = Color.FromArgb(15, 23, 42);
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is GroupBox)
+                {
+                    foreach (Control subControl in control.Controls)
+                    {
+                        if (subControl is Label)
+                        {
+                            subControl.ForeColor = Color.White;
+                            subControl.BackColor = Color.Transparent;
+                        }
+                    }
+                }
+            }
+
+            txtUsuario.BackColor = Color.FromArgb(203, 253, 253);
+            txtUsuario.ForeColor = Color.Black;
+            txtUsuario.BorderStyle = BorderStyle.FixedSingle;
+
+            txtContrasena.BackColor = Color.FromArgb(221, 214, 254);
+            txtContrasena.ForeColor = Color.Black;
+            txtContrasena.BorderStyle = BorderStyle.FixedSingle;
+
+            txtPrecio.BackColor = Color.FromArgb(203, 253, 253);
+            txtPrecio.ForeColor = Color.Black;
+            txtPrecio.BorderStyle = BorderStyle.FixedSingle;
+
+            txtDNI.BackColor = Color.FromArgb(221, 214, 254);
+            txtDNI.ForeColor = Color.Black;
+            txtDNI.BorderStyle = BorderStyle.FixedSingle;
+
+            txtNombre.BackColor = Color.FromArgb(203, 253, 253);
+            txtNombre.ForeColor = Color.Black;
+            txtNombre.BorderStyle = BorderStyle.FixedSingle;
+
+            txtTelefono.BackColor = Color.FromArgb(221, 214, 254);
+            txtTelefono.ForeColor = Color.Black;
+            txtTelefono.BorderStyle = BorderStyle.FixedSingle;
+
+            cbPlataformas.BackColor = Color.FromArgb(165, 180, 252);
+            cbPlataformas.ForeColor = Color.Black;
+            cbPlataformas.FlatStyle = FlatStyle.Flat;
+
+            clbVentaPlataformas.BackColor = Color.FromArgb(147, 197, 253);
+            clbVentaPlataformas.ForeColor = Color.Black;
+            clbVentaPlataformas.BorderStyle = BorderStyle.FixedSingle;
+
+            btRegistrarPlataforma.BackColor = Color.FromArgb(139, 92, 246);
+            btRegistrarPlataforma.ForeColor = Color.White;
+            btRegistrarPlataforma.FlatStyle = FlatStyle.Flat;
+            btRegistrarPlataforma.FlatAppearance.BorderSize = 0;
+            btRegistrarPlataforma.Font = new Font("Arial", 9, FontStyle.Bold);
+
+            btRegistrarCliente.BackColor = Color.FromArgb(34, 211, 238);
+            btRegistrarCliente.ForeColor = Color.Black;
+            btRegistrarCliente.FlatStyle = FlatStyle.Flat;
+            btRegistrarCliente.FlatAppearance.BorderSize = 0;
+            btRegistrarCliente.Font = new Font("Arial", 9, FontStyle.Bold);
+
+            btVenta.BackColor = Color.FromArgb(124, 58, 237);
+            btVenta.ForeColor = Color.White;
+            btVenta.FlatStyle = FlatStyle.Flat;
+            btVenta.FlatAppearance.BorderSize = 0;
+            btVenta.Font = new Font("Arial", 9, FontStyle.Bold);
+
+            btArbolClientes.BackColor = Color.FromArgb(6, 182, 212);
+            btArbolClientes.ForeColor = Color.White;
+            btArbolClientes.FlatStyle = FlatStyle.Flat;
+            btArbolClientes.FlatAppearance.BorderSize = 0;
+            btArbolClientes.Font = new Font("Arial", 9, FontStyle.Bold);
+
+            dgvPlataformas.BackgroundColor = Color.FromArgb(165, 243, 252);
+            dgvPlataformas.ForeColor = Color.Black;
+            dgvPlataformas.GridColor = Color.FromArgb(34, 211, 238);
+            dgvPlataformas.DefaultCellStyle.BackColor = Color.FromArgb(165, 243, 252);
+            dgvPlataformas.DefaultCellStyle.ForeColor = Color.Black;
+            dgvPlataformas.DefaultCellStyle.SelectionBackColor = Color.FromArgb(34, 211, 238);
+            dgvPlataformas.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvPlataformas.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(8, 145, 178);
+            dgvPlataformas.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvPlataformas.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Bold);
+            dgvPlataformas.BorderStyle = BorderStyle.None;
+            dgvPlataformas.EnableHeadersVisualStyles = false;
+
+            dgvClientes.BackgroundColor = Color.FromArgb(196, 181, 253);
+            dgvClientes.ForeColor = Color.Black;
+            dgvClientes.GridColor = Color.FromArgb(139, 92, 246);
+            dgvClientes.DefaultCellStyle.BackColor = Color.FromArgb(196, 181, 253);
+            dgvClientes.DefaultCellStyle.ForeColor = Color.Black;
+            dgvClientes.DefaultCellStyle.SelectionBackColor = Color.FromArgb(139, 92, 246);
+            dgvClientes.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvClientes.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(109, 40, 217);
+            dgvClientes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvClientes.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Bold);
+            dgvClientes.BorderStyle = BorderStyle.None;
+            dgvClientes.EnableHeadersVisualStyles = false;
+
+            dgvListaCuentas.BackgroundColor = Color.FromArgb(199, 210, 254);
+            dgvListaCuentas.ForeColor = Color.Black;
+            dgvListaCuentas.GridColor = Color.FromArgb(99, 102, 241);
+            dgvListaCuentas.DefaultCellStyle.BackColor = Color.FromArgb(199, 210, 254);
+            dgvListaCuentas.DefaultCellStyle.ForeColor = Color.Black;
+            dgvListaCuentas.DefaultCellStyle.SelectionBackColor = Color.FromArgb(99, 102, 241);
+            dgvListaCuentas.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvListaCuentas.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(67, 56, 202);
+            dgvListaCuentas.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvListaCuentas.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Bold);
+            dgvListaCuentas.BorderStyle = BorderStyle.None;
+            dgvListaCuentas.EnableHeadersVisualStyles = false;
+
+            tvClientes.BackColor = Color.FromArgb(165, 243, 252);  // Cyan claro
+            tvClientes.ForeColor = Color.Black;
+            tvClientes.BorderStyle = BorderStyle.FixedSingle;
+            tvClientes.Font = new Font("Consolas", 9);
+
+        }
     }
 }

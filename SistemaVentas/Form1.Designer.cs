@@ -61,6 +61,7 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btArbolClientes = new System.Windows.Forms.Button();
             this.tvClientes = new System.Windows.Forms.TreeView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlataformas)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -70,13 +71,14 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaCuentas)).BeginInit();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dgvPlataformas);
-            this.groupBox1.Location = new System.Drawing.Point(6, 184);
+            this.groupBox1.Location = new System.Drawing.Point(6, 216);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -116,7 +118,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.cbPlataformas);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(513, 184);
+            this.groupBox2.Location = new System.Drawing.Point(513, 216);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -219,7 +221,7 @@
             this.groupBox3.Controls.Add(this.btVenta);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.dgvClientes);
-            this.groupBox3.Location = new System.Drawing.Point(325, 455);
+            this.groupBox3.Location = new System.Drawing.Point(342, 487);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -292,7 +294,7 @@
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.txtDNI);
             this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Location = new System.Drawing.Point(48, 455);
+            this.groupBox4.Location = new System.Drawing.Point(65, 487);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -367,11 +369,11 @@
             // 
             this.groupBox5.Controls.Add(this.label10);
             this.groupBox5.Controls.Add(this.dgvListaCuentas);
-            this.groupBox5.Location = new System.Drawing.Point(807, 190);
+            this.groupBox5.Location = new System.Drawing.Point(807, 216);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox5.Size = new System.Drawing.Size(583, 261);
+            this.groupBox5.Size = new System.Drawing.Size(583, 267);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Historial de Cuentas - Lista";
@@ -379,32 +381,32 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(5, 33);
+            this.label10.Location = new System.Drawing.Point(8, 33);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(62, 16);
+            this.label10.Size = new System.Drawing.Size(59, 16);
             this.label10.TabIndex = 1;
-            this.label10.Text = "Cuentas: ";
+            this.label10.Text = "Historial:";
             // 
             // dgvListaCuentas
             // 
             this.dgvListaCuentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListaCuentas.Location = new System.Drawing.Point(11, 55);
+            this.dgvListaCuentas.Location = new System.Drawing.Point(11, 53);
             this.dgvListaCuentas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvListaCuentas.Name = "dgvListaCuentas";
             this.dgvListaCuentas.RowHeadersWidth = 51;
             this.dgvListaCuentas.RowTemplate.Height = 24;
-            this.dgvListaCuentas.Size = new System.Drawing.Size(566, 159);
+            this.dgvListaCuentas.Size = new System.Drawing.Size(566, 165);
             this.dgvListaCuentas.TabIndex = 0;
             // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.btArbolClientes);
             this.groupBox6.Controls.Add(this.tvClientes);
-            this.groupBox6.Location = new System.Drawing.Point(1005, 455);
+            this.groupBox6.Location = new System.Drawing.Point(1022, 487);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox6.Size = new System.Drawing.Size(310, 267);
+            this.groupBox6.Size = new System.Drawing.Size(345, 267);
             this.groupBox6.TabIndex = 3;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Árbol de Clientes";
@@ -424,14 +426,25 @@
             // 
             this.tvClientes.Location = new System.Drawing.Point(8, 20);
             this.tvClientes.Name = "tvClientes";
-            this.tvClientes.Size = new System.Drawing.Size(273, 199);
+            this.tvClientes.Size = new System.Drawing.Size(308, 199);
             this.tvClientes.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SistemaVentas.Properties.Resources.Logo;
+            this.pictureBox1.Location = new System.Drawing.Point(607, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(217, 208);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1408, 733);
+            this.ClientSize = new System.Drawing.Size(1408, 765);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -440,7 +453,7 @@
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Sistema de Ventas";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -456,6 +469,7 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaCuentas)).EndInit();
             this.groupBox6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -495,6 +509,7 @@
         private System.Windows.Forms.Button btArbolClientes;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckedListBox clbVentaPlataformas;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
